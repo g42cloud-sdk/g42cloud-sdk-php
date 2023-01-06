@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://www.g42cloud.com/"><img width="450px" height="102px" src="https://auth.g42cloud.com//authui/20220614193554/public/custom/images/logo.svg"></a>
+<a href="https://www.g42cloud.com/"><img src="https://upload.wikimedia.org/wikipedia/en/4/43/Group_42_Logo.jpg"></a>
 </p>
 
 <h1 align="center">G42 Cloud Php Software Development Kit (Php SDK)</h1>
