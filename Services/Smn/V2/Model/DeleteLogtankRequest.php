@@ -7,9 +7,8 @@ use G42Cloud\SDK\Core\Utils\ObjectSerializer;
 use G42Cloud\SDK\Core\Utils\ModelInterface;
 use G42Cloud\SDK\Core\SdkResponse;
 
-class ListVersionResponse implements ModelInterface, ArrayAccess
+class DeleteLogtankRequest implements ModelInterface, ArrayAccess
 {
-    use SdkResponse;
     const DISCRIMINATOR = null;
 
     /**
@@ -17,26 +16,30 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     *
     * @var string
     */
-    protected static $openAPIModelName = 'ListVersionResponse';
+    protected static $openAPIModelName = 'DeleteLogtankRequest';
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * version  version
+    * topicUrn  Topic的唯一的资源标识，可通过[查询主题列表](smn_api_51004.xml)获取该标识。
+    * logtankId  云日志信息唯一的资源标识。可通过[查询云日志](ListLogtank.xml)获取该标识。
     *
     * @var string[]
     */
     protected static $openAPITypes = [
-            'version' => '\G42Cloud\SDK\Smn\V2\Model\VersionItem'
+            'topicUrn' => 'string',
+            'logtankId' => 'string'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * version  version
+    * topicUrn  Topic的唯一的资源标识，可通过[查询主题列表](smn_api_51004.xml)获取该标识。
+    * logtankId  云日志信息唯一的资源标识。可通过[查询云日志](ListLogtank.xml)获取该标识。
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
-        'version' => null
+        'topicUrn' => null,
+        'logtankId' => null
     ];
 
     /**
@@ -62,32 +65,38 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * version  version
+    * topicUrn  Topic的唯一的资源标识，可通过[查询主题列表](smn_api_51004.xml)获取该标识。
+    * logtankId  云日志信息唯一的资源标识。可通过[查询云日志](ListLogtank.xml)获取该标识。
     *
     * @var string[]
     */
     protected static $attributeMap = [
-            'version' => 'version'
+            'topicUrn' => 'topic_urn',
+            'logtankId' => 'logtank_id'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * version  version
+    * topicUrn  Topic的唯一的资源标识，可通过[查询主题列表](smn_api_51004.xml)获取该标识。
+    * logtankId  云日志信息唯一的资源标识。可通过[查询云日志](ListLogtank.xml)获取该标识。
     *
     * @var string[]
     */
     protected static $setters = [
-            'version' => 'setVersion'
+            'topicUrn' => 'setTopicUrn',
+            'logtankId' => 'setLogtankId'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * version  version
+    * topicUrn  Topic的唯一的资源标识，可通过[查询主题列表](smn_api_51004.xml)获取该标识。
+    * logtankId  云日志信息唯一的资源标识。可通过[查询云日志](ListLogtank.xml)获取该标识。
     *
     * @var string[]
     */
     protected static $getters = [
-            'version' => 'getVersion'
+            'topicUrn' => 'getTopicUrn',
+            'logtankId' => 'getLogtankId'
     ];
 
     /**
@@ -148,7 +157,8 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     */
     public function __construct(array $data = null)
     {
-        $this->container['version'] = isset($data['version']) ? $data['version'] : null;
+        $this->container['topicUrn'] = isset($data['topicUrn']) ? $data['topicUrn'] : null;
+        $this->container['logtankId'] = isset($data['logtankId']) ? $data['logtankId'] : null;
     }
 
     /**
@@ -159,6 +169,12 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if ($this->container['topicUrn'] === null) {
+            $invalidProperties[] = "'topicUrn' can't be null";
+        }
+        if ($this->container['logtankId'] === null) {
+            $invalidProperties[] = "'logtankId' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -174,26 +190,50 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     }
 
     /**
-    * Gets version
-    *  version
+    * Gets topicUrn
+    *  Topic的唯一的资源标识，可通过[查询主题列表](smn_api_51004.xml)获取该标识。
     *
-    * @return \G42Cloud\SDK\Smn\V2\Model\VersionItem|null
+    * @return string
     */
-    public function getVersion()
+    public function getTopicUrn()
     {
-        return $this->container['version'];
+        return $this->container['topicUrn'];
     }
 
     /**
-    * Sets version
+    * Sets topicUrn
     *
-    * @param \G42Cloud\SDK\Smn\V2\Model\VersionItem|null $version version
+    * @param string $topicUrn Topic的唯一的资源标识，可通过[查询主题列表](smn_api_51004.xml)获取该标识。
     *
     * @return $this
     */
-    public function setVersion($version)
+    public function setTopicUrn($topicUrn)
     {
-        $this->container['version'] = $version;
+        $this->container['topicUrn'] = $topicUrn;
+        return $this;
+    }
+
+    /**
+    * Gets logtankId
+    *  云日志信息唯一的资源标识。可通过[查询云日志](ListLogtank.xml)获取该标识。
+    *
+    * @return string
+    */
+    public function getLogtankId()
+    {
+        return $this->container['logtankId'];
+    }
+
+    /**
+    * Sets logtankId
+    *
+    * @param string $logtankId 云日志信息唯一的资源标识。可通过[查询云日志](ListLogtank.xml)获取该标识。
+    *
+    * @return $this
+    */
+    public function setLogtankId($logtankId)
+    {
+        $this->container['logtankId'] = $logtankId;
         return $this;
     }
 

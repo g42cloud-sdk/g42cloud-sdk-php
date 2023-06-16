@@ -7,7 +7,7 @@ use G42Cloud\SDK\Core\Utils\ObjectSerializer;
 use G42Cloud\SDK\Core\Utils\ModelInterface;
 use G42Cloud\SDK\Core\SdkResponse;
 
-class ListVersionResponse implements ModelInterface, ArrayAccess
+class UpdateSubscriptionResponse implements ModelInterface, ArrayAccess
 {
     use SdkResponse;
     const DISCRIMINATOR = null;
@@ -17,26 +17,30 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     *
     * @var string
     */
-    protected static $openAPIModelName = 'ListVersionResponse';
+    protected static $openAPIModelName = 'UpdateSubscriptionResponse';
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * version  version
+    * requestId  请求的唯一标识ID。
+    * subscriptionUrn  订阅者的唯一资源标识。
     *
     * @var string[]
     */
     protected static $openAPITypes = [
-            'version' => '\G42Cloud\SDK\Smn\V2\Model\VersionItem'
+            'requestId' => 'string',
+            'subscriptionUrn' => 'string'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * version  version
+    * requestId  请求的唯一标识ID。
+    * subscriptionUrn  订阅者的唯一资源标识。
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
-        'version' => null
+        'requestId' => null,
+        'subscriptionUrn' => null
     ];
 
     /**
@@ -62,32 +66,38 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * version  version
+    * requestId  请求的唯一标识ID。
+    * subscriptionUrn  订阅者的唯一资源标识。
     *
     * @var string[]
     */
     protected static $attributeMap = [
-            'version' => 'version'
+            'requestId' => 'request_id',
+            'subscriptionUrn' => 'subscription_urn'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * version  version
+    * requestId  请求的唯一标识ID。
+    * subscriptionUrn  订阅者的唯一资源标识。
     *
     * @var string[]
     */
     protected static $setters = [
-            'version' => 'setVersion'
+            'requestId' => 'setRequestId',
+            'subscriptionUrn' => 'setSubscriptionUrn'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * version  version
+    * requestId  请求的唯一标识ID。
+    * subscriptionUrn  订阅者的唯一资源标识。
     *
     * @var string[]
     */
     protected static $getters = [
-            'version' => 'getVersion'
+            'requestId' => 'getRequestId',
+            'subscriptionUrn' => 'getSubscriptionUrn'
     ];
 
     /**
@@ -148,7 +158,8 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     */
     public function __construct(array $data = null)
     {
-        $this->container['version'] = isset($data['version']) ? $data['version'] : null;
+        $this->container['requestId'] = isset($data['requestId']) ? $data['requestId'] : null;
+        $this->container['subscriptionUrn'] = isset($data['subscriptionUrn']) ? $data['subscriptionUrn'] : null;
     }
 
     /**
@@ -174,26 +185,50 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     }
 
     /**
-    * Gets version
-    *  version
+    * Gets requestId
+    *  请求的唯一标识ID。
     *
-    * @return \G42Cloud\SDK\Smn\V2\Model\VersionItem|null
+    * @return string|null
     */
-    public function getVersion()
+    public function getRequestId()
     {
-        return $this->container['version'];
+        return $this->container['requestId'];
     }
 
     /**
-    * Sets version
+    * Sets requestId
     *
-    * @param \G42Cloud\SDK\Smn\V2\Model\VersionItem|null $version version
+    * @param string|null $requestId 请求的唯一标识ID。
     *
     * @return $this
     */
-    public function setVersion($version)
+    public function setRequestId($requestId)
     {
-        $this->container['version'] = $version;
+        $this->container['requestId'] = $requestId;
+        return $this;
+    }
+
+    /**
+    * Gets subscriptionUrn
+    *  订阅者的唯一资源标识。
+    *
+    * @return string|null
+    */
+    public function getSubscriptionUrn()
+    {
+        return $this->container['subscriptionUrn'];
+    }
+
+    /**
+    * Sets subscriptionUrn
+    *
+    * @param string|null $subscriptionUrn 订阅者的唯一资源标识。
+    *
+    * @return $this
+    */
+    public function setSubscriptionUrn($subscriptionUrn)
+    {
+        $this->container['subscriptionUrn'] = $subscriptionUrn;
         return $this;
     }
 

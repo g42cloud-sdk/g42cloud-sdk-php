@@ -1,3 +1,69 @@
+# 0.0.6-beta 2023-06-16
+
+### G42Cloud SDK CSE
+
+- _Features_
+  - None
+- _Bug Fix_
+  - None
+- _Change_
+  - **DownloadKie**
+    - changes of response param
+      - `+ data.id`
+  - **CreateEngine**
+    - changes of response param
+      - `+ jobId`
+      - `- job_id`
+  - **DeleteEngine**
+    - changes of response param
+      - `+ jobId`
+      - `- job_id`
+
+### G42Cloud SDK ECS
+
+- _Features_
+  - None
+- _Bug Fix_
+  - None
+- _Change_
+  - **CreateServers**
+    - changes of request param
+      - `+ server.data_volumes.delete_on_termination`
+  - **CreatePostPaidServers**
+    - changes of request param
+      - `+ server.data_volumes.delete_on_termination`
+
+### G42Cloud SDK SMN
+
+- _Features_
+  - Support the following interfaces：
+    - `UpdateSubscription`
+    - `ListLogtank`
+    - `CreateLogtank`
+    - `UpdateLogtank`
+    - `DeleteLogtank`
+- _Bug Fix_
+  - None
+- _Change_
+  - **ListTopicDetails**
+    - changes of response param
+      - `+ topic_id`
+  - **ListTopics**
+    - changes of request param
+      - `+ topic_id`
+    - changes of response param
+      - `+ topics.topic_id`
+  - **ListTopicAttributes**
+    - changes of response param
+      - `+ attributes.access_policy`
+      - `+ attributes.introduction`
+      - `- attributes.Version`
+      - `- attributes.Id`
+      - `- attributes.Statement`
+  - **AddSubscription**
+    - changes of request param
+      - `+ extension`
+
 # 0.0.5-beta 2023-05-12
 
 ### G42Cloud SDK ECS

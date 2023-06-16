@@ -25,7 +25,7 @@ class CreateResourceTagRequestBody implements ModelInterface, ArrayAccess
     * @var string[]
     */
     protected static $openAPITypes = [
-            'tag' => '\G42Cloud\SDK\Smn\V2\Model\CreateResourceTagRequestBodyTag'
+            'tag' => '\G42Cloud\SDK\Smn\V2\Model\ResourceTag'
     ];
 
     /**
@@ -179,7 +179,7 @@ class CreateResourceTagRequestBody implements ModelInterface, ArrayAccess
     * Gets tag
     *  tag
     *
-    * @return \G42Cloud\SDK\Smn\V2\Model\CreateResourceTagRequestBodyTag
+    * @return \G42Cloud\SDK\Smn\V2\Model\ResourceTag
     */
     public function getTag()
     {
@@ -189,7 +189,7 @@ class CreateResourceTagRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets tag
     *
-    * @param \G42Cloud\SDK\Smn\V2\Model\CreateResourceTagRequestBodyTag $tag tag
+    * @param \G42Cloud\SDK\Smn\V2\Model\ResourceTag $tag tag
     *
     * @return $this
     */

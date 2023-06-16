@@ -7,9 +7,8 @@ use G42Cloud\SDK\Core\Utils\ObjectSerializer;
 use G42Cloud\SDK\Core\Utils\ModelInterface;
 use G42Cloud\SDK\Core\SdkResponse;
 
-class ListVersionResponse implements ModelInterface, ArrayAccess
+class UpdateSubscriptionRequestBody implements ModelInterface, ArrayAccess
 {
-    use SdkResponse;
     const DISCRIMINATOR = null;
 
     /**
@@ -17,26 +16,26 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     *
     * @var string
     */
-    protected static $openAPIModelName = 'ListVersionResponse';
+    protected static $openAPIModelName = 'UpdateSubscriptionRequestBody';
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * version  version
+    * remark  订阅者备注。订阅者备注的最大长度为128byte。
     *
     * @var string[]
     */
     protected static $openAPITypes = [
-            'version' => '\G42Cloud\SDK\Smn\V2\Model\VersionItem'
+            'remark' => 'string'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * version  version
+    * remark  订阅者备注。订阅者备注的最大长度为128byte。
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
-        'version' => null
+        'remark' => null
     ];
 
     /**
@@ -62,32 +61,32 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * version  version
+    * remark  订阅者备注。订阅者备注的最大长度为128byte。
     *
     * @var string[]
     */
     protected static $attributeMap = [
-            'version' => 'version'
+            'remark' => 'remark'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * version  version
+    * remark  订阅者备注。订阅者备注的最大长度为128byte。
     *
     * @var string[]
     */
     protected static $setters = [
-            'version' => 'setVersion'
+            'remark' => 'setRemark'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * version  version
+    * remark  订阅者备注。订阅者备注的最大长度为128byte。
     *
     * @var string[]
     */
     protected static $getters = [
-            'version' => 'getVersion'
+            'remark' => 'getRemark'
     ];
 
     /**
@@ -148,7 +147,7 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     */
     public function __construct(array $data = null)
     {
-        $this->container['version'] = isset($data['version']) ? $data['version'] : null;
+        $this->container['remark'] = isset($data['remark']) ? $data['remark'] : null;
     }
 
     /**
@@ -159,6 +158,15 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if ($this->container['remark'] === null) {
+            $invalidProperties[] = "'remark' can't be null";
+        }
+            if ((mb_strlen($this->container['remark']) > 128)) {
+                $invalidProperties[] = "invalid value for 'remark', the character length must be smaller than or equal to 128.";
+            }
+            if ((mb_strlen($this->container['remark']) < 1)) {
+                $invalidProperties[] = "invalid value for 'remark', the character length must be bigger than or equal to 1.";
+            }
         return $invalidProperties;
     }
 
@@ -174,26 +182,26 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     }
 
     /**
-    * Gets version
-    *  version
+    * Gets remark
+    *  订阅者备注。订阅者备注的最大长度为128byte。
     *
-    * @return \G42Cloud\SDK\Smn\V2\Model\VersionItem|null
+    * @return string
     */
-    public function getVersion()
+    public function getRemark()
     {
-        return $this->container['version'];
+        return $this->container['remark'];
     }
 
     /**
-    * Sets version
+    * Sets remark
     *
-    * @param \G42Cloud\SDK\Smn\V2\Model\VersionItem|null $version version
+    * @param string $remark 订阅者备注。订阅者备注的最大长度为128byte。
     *
     * @return $this
     */
-    public function setVersion($version)
+    public function setRemark($remark)
     {
-        $this->container['version'] = $version;
+        $this->container['remark'] = $remark;
         return $this;
     }
 

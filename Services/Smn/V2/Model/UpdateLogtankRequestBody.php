@@ -7,9 +7,8 @@ use G42Cloud\SDK\Core\Utils\ObjectSerializer;
 use G42Cloud\SDK\Core\Utils\ModelInterface;
 use G42Cloud\SDK\Core\SdkResponse;
 
-class ListVersionResponse implements ModelInterface, ArrayAccess
+class UpdateLogtankRequestBody implements ModelInterface, ArrayAccess
 {
-    use SdkResponse;
     const DISCRIMINATOR = null;
 
     /**
@@ -17,26 +16,30 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     *
     * @var string
     */
-    protected static $openAPIModelName = 'ListVersionResponse';
+    protected static $openAPIModelName = 'UpdateLogtankRequestBody';
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * version  version
+    * logGroupId  云日志服务日志组ID。
+    * logStreamId  云日志服务日志流ID。
     *
     * @var string[]
     */
     protected static $openAPITypes = [
-            'version' => '\G42Cloud\SDK\Smn\V2\Model\VersionItem'
+            'logGroupId' => 'string',
+            'logStreamId' => 'string'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * version  version
+    * logGroupId  云日志服务日志组ID。
+    * logStreamId  云日志服务日志流ID。
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
-        'version' => null
+        'logGroupId' => null,
+        'logStreamId' => null
     ];
 
     /**
@@ -62,32 +65,38 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * version  version
+    * logGroupId  云日志服务日志组ID。
+    * logStreamId  云日志服务日志流ID。
     *
     * @var string[]
     */
     protected static $attributeMap = [
-            'version' => 'version'
+            'logGroupId' => 'log_group_id',
+            'logStreamId' => 'log_stream_id'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * version  version
+    * logGroupId  云日志服务日志组ID。
+    * logStreamId  云日志服务日志流ID。
     *
     * @var string[]
     */
     protected static $setters = [
-            'version' => 'setVersion'
+            'logGroupId' => 'setLogGroupId',
+            'logStreamId' => 'setLogStreamId'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * version  version
+    * logGroupId  云日志服务日志组ID。
+    * logStreamId  云日志服务日志流ID。
     *
     * @var string[]
     */
     protected static $getters = [
-            'version' => 'getVersion'
+            'logGroupId' => 'getLogGroupId',
+            'logStreamId' => 'getLogStreamId'
     ];
 
     /**
@@ -148,7 +157,8 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     */
     public function __construct(array $data = null)
     {
-        $this->container['version'] = isset($data['version']) ? $data['version'] : null;
+        $this->container['logGroupId'] = isset($data['logGroupId']) ? $data['logGroupId'] : null;
+        $this->container['logStreamId'] = isset($data['logStreamId']) ? $data['logStreamId'] : null;
     }
 
     /**
@@ -159,6 +169,24 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if ($this->container['logGroupId'] === null) {
+            $invalidProperties[] = "'logGroupId' can't be null";
+        }
+            if ((mb_strlen($this->container['logGroupId']) > 36)) {
+                $invalidProperties[] = "invalid value for 'logGroupId', the character length must be smaller than or equal to 36.";
+            }
+            if ((mb_strlen($this->container['logGroupId']) < 36)) {
+                $invalidProperties[] = "invalid value for 'logGroupId', the character length must be bigger than or equal to 36.";
+            }
+        if ($this->container['logStreamId'] === null) {
+            $invalidProperties[] = "'logStreamId' can't be null";
+        }
+            if ((mb_strlen($this->container['logStreamId']) > 36)) {
+                $invalidProperties[] = "invalid value for 'logStreamId', the character length must be smaller than or equal to 36.";
+            }
+            if ((mb_strlen($this->container['logStreamId']) < 36)) {
+                $invalidProperties[] = "invalid value for 'logStreamId', the character length must be bigger than or equal to 36.";
+            }
         return $invalidProperties;
     }
 
@@ -174,26 +202,50 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     }
 
     /**
-    * Gets version
-    *  version
+    * Gets logGroupId
+    *  云日志服务日志组ID。
     *
-    * @return \G42Cloud\SDK\Smn\V2\Model\VersionItem|null
+    * @return string
     */
-    public function getVersion()
+    public function getLogGroupId()
     {
-        return $this->container['version'];
+        return $this->container['logGroupId'];
     }
 
     /**
-    * Sets version
+    * Sets logGroupId
     *
-    * @param \G42Cloud\SDK\Smn\V2\Model\VersionItem|null $version version
+    * @param string $logGroupId 云日志服务日志组ID。
     *
     * @return $this
     */
-    public function setVersion($version)
+    public function setLogGroupId($logGroupId)
     {
-        $this->container['version'] = $version;
+        $this->container['logGroupId'] = $logGroupId;
+        return $this;
+    }
+
+    /**
+    * Gets logStreamId
+    *  云日志服务日志流ID。
+    *
+    * @return string
+    */
+    public function getLogStreamId()
+    {
+        return $this->container['logStreamId'];
+    }
+
+    /**
+    * Sets logStreamId
+    *
+    * @param string $logStreamId 云日志服务日志流ID。
+    *
+    * @return $this
+    */
+    public function setLogStreamId($logStreamId)
+    {
+        $this->container['logStreamId'] = $logStreamId;
         return $this;
     }
 

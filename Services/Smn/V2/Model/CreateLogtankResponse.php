@@ -7,7 +7,7 @@ use G42Cloud\SDK\Core\Utils\ObjectSerializer;
 use G42Cloud\SDK\Core\Utils\ModelInterface;
 use G42Cloud\SDK\Core\SdkResponse;
 
-class ListVersionResponse implements ModelInterface, ArrayAccess
+class CreateLogtankResponse implements ModelInterface, ArrayAccess
 {
     use SdkResponse;
     const DISCRIMINATOR = null;
@@ -17,26 +17,30 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     *
     * @var string
     */
-    protected static $openAPIModelName = 'ListVersionResponse';
+    protected static $openAPIModelName = 'CreateLogtankResponse';
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * version  version
+    * requestId  请求的唯一标识。
+    * id  云日志信息唯一的资源标识。
     *
     * @var string[]
     */
     protected static $openAPITypes = [
-            'version' => '\G42Cloud\SDK\Smn\V2\Model\VersionItem'
+            'requestId' => 'string',
+            'id' => 'string'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * version  version
+    * requestId  请求的唯一标识。
+    * id  云日志信息唯一的资源标识。
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
-        'version' => null
+        'requestId' => null,
+        'id' => null
     ];
 
     /**
@@ -62,32 +66,38 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * version  version
+    * requestId  请求的唯一标识。
+    * id  云日志信息唯一的资源标识。
     *
     * @var string[]
     */
     protected static $attributeMap = [
-            'version' => 'version'
+            'requestId' => 'request_id',
+            'id' => 'id'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * version  version
+    * requestId  请求的唯一标识。
+    * id  云日志信息唯一的资源标识。
     *
     * @var string[]
     */
     protected static $setters = [
-            'version' => 'setVersion'
+            'requestId' => 'setRequestId',
+            'id' => 'setId'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * version  version
+    * requestId  请求的唯一标识。
+    * id  云日志信息唯一的资源标识。
     *
     * @var string[]
     */
     protected static $getters = [
-            'version' => 'getVersion'
+            'requestId' => 'getRequestId',
+            'id' => 'getId'
     ];
 
     /**
@@ -148,7 +158,8 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     */
     public function __construct(array $data = null)
     {
-        $this->container['version'] = isset($data['version']) ? $data['version'] : null;
+        $this->container['requestId'] = isset($data['requestId']) ? $data['requestId'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
     }
 
     /**
@@ -159,6 +170,18 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+            if (!is_null($this->container['requestId']) && (mb_strlen($this->container['requestId']) > 32)) {
+                $invalidProperties[] = "invalid value for 'requestId', the character length must be smaller than or equal to 32.";
+            }
+            if (!is_null($this->container['requestId']) && (mb_strlen($this->container['requestId']) < 32)) {
+                $invalidProperties[] = "invalid value for 'requestId', the character length must be bigger than or equal to 32.";
+            }
+            if (!is_null($this->container['id']) && (mb_strlen($this->container['id']) > 32)) {
+                $invalidProperties[] = "invalid value for 'id', the character length must be smaller than or equal to 32.";
+            }
+            if (!is_null($this->container['id']) && (mb_strlen($this->container['id']) < 32)) {
+                $invalidProperties[] = "invalid value for 'id', the character length must be bigger than or equal to 32.";
+            }
         return $invalidProperties;
     }
 
@@ -174,26 +197,50 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     }
 
     /**
-    * Gets version
-    *  version
+    * Gets requestId
+    *  请求的唯一标识。
     *
-    * @return \G42Cloud\SDK\Smn\V2\Model\VersionItem|null
+    * @return string|null
     */
-    public function getVersion()
+    public function getRequestId()
     {
-        return $this->container['version'];
+        return $this->container['requestId'];
     }
 
     /**
-    * Sets version
+    * Sets requestId
     *
-    * @param \G42Cloud\SDK\Smn\V2\Model\VersionItem|null $version version
+    * @param string|null $requestId 请求的唯一标识。
     *
     * @return $this
     */
-    public function setVersion($version)
+    public function setRequestId($requestId)
     {
-        $this->container['version'] = $version;
+        $this->container['requestId'] = $requestId;
+        return $this;
+    }
+
+    /**
+    * Gets id
+    *  云日志信息唯一的资源标识。
+    *
+    * @return string|null
+    */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+    * Sets id
+    *
+    * @param string|null $id 云日志信息唯一的资源标识。
+    *
+    * @return $this
+    */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
         return $this;
     }
 

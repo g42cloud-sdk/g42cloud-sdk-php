@@ -7,7 +7,7 @@ use G42Cloud\SDK\Core\Utils\ObjectSerializer;
 use G42Cloud\SDK\Core\Utils\ModelInterface;
 use G42Cloud\SDK\Core\SdkResponse;
 
-class ListVersionResponse implements ModelInterface, ArrayAccess
+class ListLogtankResponse implements ModelInterface, ArrayAccess
 {
     use SdkResponse;
     const DISCRIMINATOR = null;
@@ -17,26 +17,34 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     *
     * @var string
     */
-    protected static $openAPIModelName = 'ListVersionResponse';
+    protected static $openAPIModelName = 'ListLogtankResponse';
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * version  version
+    * requestId  请求的唯一标识
+    * count  云日志信息数量
+    * logtanks  云日志信息列表
     *
     * @var string[]
     */
     protected static $openAPITypes = [
-            'version' => '\G42Cloud\SDK\Smn\V2\Model\VersionItem'
+            'requestId' => 'string',
+            'count' => 'int',
+            'logtanks' => '\G42Cloud\SDK\Smn\V2\Model\LogtankItem[]'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * version  version
+    * requestId  请求的唯一标识
+    * count  云日志信息数量
+    * logtanks  云日志信息列表
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
-        'version' => null
+        'requestId' => null,
+        'count' => 'int32',
+        'logtanks' => null
     ];
 
     /**
@@ -62,32 +70,44 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * version  version
+    * requestId  请求的唯一标识
+    * count  云日志信息数量
+    * logtanks  云日志信息列表
     *
     * @var string[]
     */
     protected static $attributeMap = [
-            'version' => 'version'
+            'requestId' => 'request_id',
+            'count' => 'count',
+            'logtanks' => 'logtanks'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * version  version
+    * requestId  请求的唯一标识
+    * count  云日志信息数量
+    * logtanks  云日志信息列表
     *
     * @var string[]
     */
     protected static $setters = [
-            'version' => 'setVersion'
+            'requestId' => 'setRequestId',
+            'count' => 'setCount',
+            'logtanks' => 'setLogtanks'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * version  version
+    * requestId  请求的唯一标识
+    * count  云日志信息数量
+    * logtanks  云日志信息列表
     *
     * @var string[]
     */
     protected static $getters = [
-            'version' => 'getVersion'
+            'requestId' => 'getRequestId',
+            'count' => 'getCount',
+            'logtanks' => 'getLogtanks'
     ];
 
     /**
@@ -148,7 +168,9 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     */
     public function __construct(array $data = null)
     {
-        $this->container['version'] = isset($data['version']) ? $data['version'] : null;
+        $this->container['requestId'] = isset($data['requestId']) ? $data['requestId'] : null;
+        $this->container['count'] = isset($data['count']) ? $data['count'] : null;
+        $this->container['logtanks'] = isset($data['logtanks']) ? $data['logtanks'] : null;
     }
 
     /**
@@ -174,26 +196,74 @@ class ListVersionResponse implements ModelInterface, ArrayAccess
     }
 
     /**
-    * Gets version
-    *  version
+    * Gets requestId
+    *  请求的唯一标识
     *
-    * @return \G42Cloud\SDK\Smn\V2\Model\VersionItem|null
+    * @return string|null
     */
-    public function getVersion()
+    public function getRequestId()
     {
-        return $this->container['version'];
+        return $this->container['requestId'];
     }
 
     /**
-    * Sets version
+    * Sets requestId
     *
-    * @param \G42Cloud\SDK\Smn\V2\Model\VersionItem|null $version version
+    * @param string|null $requestId 请求的唯一标识
     *
     * @return $this
     */
-    public function setVersion($version)
+    public function setRequestId($requestId)
     {
-        $this->container['version'] = $version;
+        $this->container['requestId'] = $requestId;
+        return $this;
+    }
+
+    /**
+    * Gets count
+    *  云日志信息数量
+    *
+    * @return int|null
+    */
+    public function getCount()
+    {
+        return $this->container['count'];
+    }
+
+    /**
+    * Sets count
+    *
+    * @param int|null $count 云日志信息数量
+    *
+    * @return $this
+    */
+    public function setCount($count)
+    {
+        $this->container['count'] = $count;
+        return $this;
+    }
+
+    /**
+    * Gets logtanks
+    *  云日志信息列表
+    *
+    * @return \G42Cloud\SDK\Smn\V2\Model\LogtankItem[]|null
+    */
+    public function getLogtanks()
+    {
+        return $this->container['logtanks'];
+    }
+
+    /**
+    * Sets logtanks
+    *
+    * @param \G42Cloud\SDK\Smn\V2\Model\LogtankItem[]|null $logtanks 云日志信息列表
+    *
+    * @return $this
+    */
+    public function setLogtanks($logtanks)
+    {
+        $this->container['logtanks'] = $logtanks;
         return $this;
     }
 

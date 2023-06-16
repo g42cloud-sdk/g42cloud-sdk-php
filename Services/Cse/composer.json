@@ -8,7 +8,7 @@
     "api",
     "cse"
   ],
-  "version": "0.0.5-beta",
+  "version": "0.0.6-beta",
    "type": "library",
   "license": "Apache-2.0",
   "authors": [
@@ -20,7 +20,7 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "g42cloud/cloud-sdk-core": "0.0.5-beta"
+    "g42cloud/cloud-sdk-core": "0.0.6-beta"
   },
   "autoload": {
     "psr-4": {
