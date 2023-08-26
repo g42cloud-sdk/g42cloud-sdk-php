@@ -1,0 +1,30 @@
+{
+  "name": "g42cloud/g42cloud-sdk-mpc",
+  "description": "G42CLOUD SDK MPC",
+  "keywords": [
+    "php",
+    "sdk",
+    "rest",
+    "api",
+    "mpc"
+  ],
+  "version": "0.0.7-beta",
+   "type": "library",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "G42Cloud_SDK",
+      "email": "unionsdk@outlook.com",
+      "homepage": "https://github.com/g42cloud-sdk/g42cloud-sdk-php"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "g42cloud/cloud-sdk-core": "0.0.7-beta"
+  },
+  "autoload": {
+    "psr-4": {
+      "G42Cloud\\SDK\\Mpc\\V3\\": "V3/"
+    }
+  }
+}

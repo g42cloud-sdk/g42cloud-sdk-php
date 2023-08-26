@@ -272,8 +272,8 @@ class ListDomainsRequest implements ModelInterface, ArrayAccess
         $this->container['businessType'] = isset($data['businessType']) ? $data['businessType'] : null;
         $this->container['domainStatus'] = isset($data['domainStatus']) ? $data['domainStatus'] : null;
         $this->container['serviceArea'] = isset($data['serviceArea']) ? $data['serviceArea'] : null;
-        $this->container['pageSize'] = isset($data['pageSize']) ? $data['pageSize'] : 30;
-        $this->container['pageNumber'] = isset($data['pageNumber']) ? $data['pageNumber'] : 1;
+        $this->container['pageSize'] = isset($data['pageSize']) ? $data['pageSize'] : null;
+        $this->container['pageNumber'] = isset($data['pageNumber']) ? $data['pageNumber'] : null;
         $this->container['enterpriseProjectId'] = isset($data['enterpriseProjectId']) ? $data['enterpriseProjectId'] : null;
     }
 

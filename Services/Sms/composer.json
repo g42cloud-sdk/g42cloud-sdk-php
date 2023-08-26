@@ -1,0 +1,30 @@
+{
+  "name": "g42cloud/g42cloud-sdk-sms",
+  "description": "G42CLOUD SDK SMS",
+  "keywords": [
+    "php",
+    "sdk",
+    "rest",
+    "api",
+    "sms"
+  ],
+  "version": "0.0.7-beta",
+   "type": "library",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "G42Cloud_SDK",
+      "email": "unionsdk@outlook.com",
+      "homepage": "https://github.com/g42cloud-sdk/g42cloud-sdk-php"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "g42cloud/cloud-sdk-core": "0.0.7-beta"
+  },
+  "autoload": {
+    "psr-4": {
+      "G42Cloud\\SDK\\Sms\\V3\\": "V3/"
+    }
+  }
+}

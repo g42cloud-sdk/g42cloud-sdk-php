@@ -30,7 +30,7 @@ class PrePaidServerDataVolume implements ModelInterface, ArrayAccess
     * clusterId  数据镜像的ID，UUID格式。
     * metadata  metadata
     * dataImageId  数据镜像的ID，UUID格式。  如果使用数据盘镜像创建数据盘，则data_image_id为必选参数，且不支持使用metadata。
-    * deleteOnTermination  弹性公网IP随实例释放策略。  true：弹性公网IP随实例释放。 false：弹性公网IP不随实例释放。 默认值：false。
+    * deleteOnTermination  数据盘随实例释放策略。  true：数据盘随实例释放。 false：数据盘不随实例释放。 默认值：false。
     *
     * @var string[]
     */
@@ -60,7 +60,7 @@ class PrePaidServerDataVolume implements ModelInterface, ArrayAccess
     * clusterId  数据镜像的ID，UUID格式。
     * metadata  metadata
     * dataImageId  数据镜像的ID，UUID格式。  如果使用数据盘镜像创建数据盘，则data_image_id为必选参数，且不支持使用metadata。
-    * deleteOnTermination  弹性公网IP随实例释放策略。  true：弹性公网IP随实例释放。 false：弹性公网IP不随实例释放。 默认值：false。
+    * deleteOnTermination  数据盘随实例释放策略。  true：数据盘随实例释放。 false：数据盘不随实例释放。 默认值：false。
     *
     * @var string[]
     */
@@ -111,7 +111,7 @@ class PrePaidServerDataVolume implements ModelInterface, ArrayAccess
     * clusterId  数据镜像的ID，UUID格式。
     * metadata  metadata
     * dataImageId  数据镜像的ID，UUID格式。  如果使用数据盘镜像创建数据盘，则data_image_id为必选参数，且不支持使用metadata。
-    * deleteOnTermination  弹性公网IP随实例释放策略。  true：弹性公网IP随实例释放。 false：弹性公网IP不随实例释放。 默认值：false。
+    * deleteOnTermination  数据盘随实例释放策略。  true：数据盘随实例释放。 false：数据盘不随实例释放。 默认值：false。
     *
     * @var string[]
     */
@@ -141,7 +141,7 @@ class PrePaidServerDataVolume implements ModelInterface, ArrayAccess
     * clusterId  数据镜像的ID，UUID格式。
     * metadata  metadata
     * dataImageId  数据镜像的ID，UUID格式。  如果使用数据盘镜像创建数据盘，则data_image_id为必选参数，且不支持使用metadata。
-    * deleteOnTermination  弹性公网IP随实例释放策略。  true：弹性公网IP随实例释放。 false：弹性公网IP不随实例释放。 默认值：false。
+    * deleteOnTermination  数据盘随实例释放策略。  true：数据盘随实例释放。 false：数据盘不随实例释放。 默认值：false。
     *
     * @var string[]
     */
@@ -171,7 +171,7 @@ class PrePaidServerDataVolume implements ModelInterface, ArrayAccess
     * clusterId  数据镜像的ID，UUID格式。
     * metadata  metadata
     * dataImageId  数据镜像的ID，UUID格式。  如果使用数据盘镜像创建数据盘，则data_image_id为必选参数，且不支持使用metadata。
-    * deleteOnTermination  弹性公网IP随实例释放策略。  true：弹性公网IP随实例释放。 false：弹性公网IP不随实例释放。 默认值：false。
+    * deleteOnTermination  数据盘随实例释放策略。  true：数据盘随实例释放。 false：数据盘不随实例释放。 默认值：false。
     *
     * @var string[]
     */
@@ -287,15 +287,15 @@ class PrePaidServerDataVolume implements ModelInterface, ArrayAccess
     {
         $this->container['volumetype'] = isset($data['volumetype']) ? $data['volumetype'] : null;
         $this->container['size'] = isset($data['size']) ? $data['size'] : null;
-        $this->container['shareable'] = isset($data['shareable']) ? $data['shareable'] : false;
-        $this->container['multiattach'] = isset($data['multiattach']) ? $data['multiattach'] : false;
-        $this->container['hwpassthrough'] = isset($data['hwpassthrough']) ? $data['hwpassthrough'] : false;
+        $this->container['shareable'] = isset($data['shareable']) ? $data['shareable'] : null;
+        $this->container['multiattach'] = isset($data['multiattach']) ? $data['multiattach'] : null;
+        $this->container['hwpassthrough'] = isset($data['hwpassthrough']) ? $data['hwpassthrough'] : null;
         $this->container['extendparam'] = isset($data['extendparam']) ? $data['extendparam'] : null;
         $this->container['clusterType'] = isset($data['clusterType']) ? $data['clusterType'] : null;
         $this->container['clusterId'] = isset($data['clusterId']) ? $data['clusterId'] : null;
         $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
         $this->container['dataImageId'] = isset($data['dataImageId']) ? $data['dataImageId'] : null;
-        $this->container['deleteOnTermination'] = isset($data['deleteOnTermination']) ? $data['deleteOnTermination'] : false;
+        $this->container['deleteOnTermination'] = isset($data['deleteOnTermination']) ? $data['deleteOnTermination'] : null;
     }
 
     /**
@@ -590,7 +590,7 @@ class PrePaidServerDataVolume implements ModelInterface, ArrayAccess
 
     /**
     * Gets deleteOnTermination
-    *  弹性公网IP随实例释放策略。  true：弹性公网IP随实例释放。 false：弹性公网IP不随实例释放。 默认值：false。
+    *  数据盘随实例释放策略。  true：数据盘随实例释放。 false：数据盘不随实例释放。 默认值：false。
     *
     * @return bool|null
     */
@@ -602,7 +602,7 @@ class PrePaidServerDataVolume implements ModelInterface, ArrayAccess
     /**
     * Sets deleteOnTermination
     *
-    * @param bool|null $deleteOnTermination 弹性公网IP随实例释放策略。  true：弹性公网IP随实例释放。 false：弹性公网IP不随实例释放。 默认值：false。
+    * @param bool|null $deleteOnTermination 数据盘随实例释放策略。  true：数据盘随实例释放。 false：数据盘不随实例释放。 默认值：false。
     *
     * @return $this
     */
