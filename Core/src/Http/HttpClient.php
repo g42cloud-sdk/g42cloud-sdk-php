@@ -42,6 +42,9 @@ class HttpClient
     protected $logger;
     protected $httpHandler;
 
+    const X_REQUEST_ID = "X-Request-Id";
+    const X_REQUEST_ID_LOWER = "x-request-id";
+
     public function __construct(
         HttpConfig $httpConfig = null,
         HttpHandler $httpHandler = null,
@@ -108,7 +111,7 @@ class HttpClient
                         $response, 'logger' => $this->logger]);
                 }
                 $responseStatusCode = $response->getStatusCode();
-                $requestId = $response->getHeaders()['X-Request-Id'][0];
+                $requestId = $this->parseRequestId($response);
                 $responseBody = $response->getBody();
                 $sdkError = $this->getSdkErrorMessage($requestId,
                     $responseBody, $responseStatusCode);
@@ -124,6 +127,38 @@ class HttpClient
         }
         $this->recordRequestIdToLog($sdkRequest, $response);
         return $response;
+    }
+
+    private function getFirstIdFromArray($headers, $key) {
+        $requestKeys = $headers[$key];
+        if (count($requestKeys) < 1) {
+            return '';
+        }
+        return $requestKeys[0];
+    }
+
+    /**
+     * @param $response http response
+     * @return mixed|string request id from response header
+     */
+    public function parseRequestId($response) {
+        if ($response->hasHeader(self::X_REQUEST_ID)) {
+            $headers = $response->getHeaders();
+            if (array_key_exists(self::X_REQUEST_ID, $headers)) {
+                return $this->getFirstIdFromArray($headers, self::X_REQUEST_ID);
+            }
+            if (array_key_exists(self::X_REQUEST_ID_LOWER, $headers)) {
+                return $this->getFirstIdFromArray($headers, self::X_REQUEST_ID_LOWER);
+            }
+            return '';
+        }
+        // parse requestId from other key
+        $requestKeys = array_filter(array_keys($response->getHeaders()), function ($key){
+            return preg_match('/^x-([a-zA-z\-]+)?request-id$/', (string) $key);
+        });
+        $requestKey = array_shift($requestKeys);
+        return $requestKey != null && isset($response->getHeaders()[$requestKey]) ?
+            $response->getHeaders()[$requestKey][0] : '';
     }
 
     public function doRequestAsync(SdkRequest $sdkRequest)
@@ -144,7 +179,7 @@ class HttpClient
                     if ($e->hasResponse()) {
                         $response = $e->getResponse();
                         $responseStatusCode = $response->getStatusCode();
-                        $requestId = $response->getHeaders()['X-Request-Id'][0];
+                        $requestId = $this->parseRequestId($response);
                         $responseBody = $response->getBody();
                         $sdkError = $this->getSdkErrorMessage($requestId,
                             $responseBody, $responseStatusCode);
@@ -248,38 +283,38 @@ class HttpClient
         switch ($errorKey) {
             case 'cURL error 6':
                 if (isset($this->logger)) {
-                    $this->logger->addError('HostUnreachableException occurred.'
+                    $this->logger->error('HostUnreachableException occurred.'
                         .$msg);
                 }
                 throw new HostUnreachableException($msg);
             case 'cURL error 60':
                 if (isset($this->logger)) {
-                    $this->logger->addError('SslHandShakeException occurred.'
+                    $this->logger->error('SslHandShakeException occurred.'
                         .$msg);
                 }
                 throw new SslHandShakeException($msg);
             case 'cURL error 28':
                 if (isset($this->logger)) {
-                    $this->logger->addError('CallTimeoutException occurred.'
+                    $this->logger->error('CallTimeoutException occurred.'
                         .$msg);
                 }
                 throw new CallTimeoutException($msg);
             case 'cURL error 47':
                 if (isset($this->logger)) {
-                    $this->logger->addError('RetryOutageException occurred.'
+                    $this->logger->error('RetryOutageException occurred.'
                         .$msg);
                 }
                 throw new RetryOutageException($msg);
             case 'CURL error 55':
                 // should handle error for reset by peer, throw connection exception
                 if (isset($this->logger)) {
-                    $this->logger->addError('reset by server error occurred.'
+                    $this->logger->error('reset by server error occurred.'
                         .$msg);
                 }
                 throw new ConnectionException($msg, 504, null);
             default:
                 if (isset($this->logger)) {
-                    $this->logger->addError('SdkException occurred.'
+                    $this->logger->error('SdkException occurred.'
                         .$msg);
                 }
                 throw new SdkException($errorMessage);
@@ -324,11 +359,12 @@ class HttpClient
     private function recordRequestIdToLog($sdkRequest, $response)
     {
         $contentLength = $this->getContentLength($response);
+        $requestId = $this->parseRequestId($response);
         if (isset($this->logger)) {
-            $this->logger->addInfo(' "'.$sdkRequest->method.' '.
+            $this->logger->info(' "'.$sdkRequest->method.' '.
                 $sdkRequest->url.'" '
                 .' '.$response->getStatusCode().' '.$contentLength
-                .' '.$response->getHeaders()['X-Request-Id'][0]);
+                .' '.$requestId);
         }
     }
 }
